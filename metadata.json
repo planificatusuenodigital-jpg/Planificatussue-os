@@ -1,0 +1,5 @@
+{
+  "name": "Planifica Tu Sueño - Agencia de Viajes",
+  "description": "An elegant web application for 'Planifica Tu Sueño', a travel agency in Anserma, Colombia. It features a Gemini-powered trip planner that generates personalized travel package ideas based on user descriptions, showcasing the agency's focus on outbound tourism.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planifica Tu Sueño - Agencia de Viajes</title>
+    <link rel="icon" href="https://photos.fife.usercontent.google.com/pw/AP1GczMGTOKjVHSgNr1tq3SupjZ9_4We7R1T_c21MeRYSMj7vFPNVa8-Xyo=w991-h991-s-no-gm?authuser=0" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'sans': ['Poppins', 'sans-serif'],
+              'script': ['Dancing Script', 'cursive'],
+            },
+            colors: {
+              'brand-magenta': '#D9006C', // Vibrante y principal
+              'brand-purple': '#5D3FD3', // Morado intenso para fondos y contraste
+              'brand-pink': '#FCE4EC',   // Rosa claro, suave para fondos de sección
+              'brand-white': '#FFFFFF',
+              'brand-text': '#333333',
+            },
+            animation: {
+              blob: 'blob 10s infinite',
+            },
+            keyframes: {
+              blob: {
+                '0%': {
+                  transform: 'translate(0px, 0px) scale(1)',
+                },
+                '33%': {
+                  transform: 'translate(30px, -50px) scale(1.1)',
+                },
+                '66%': {
+                  transform: 'translate(-20px, 20px) scale(0.9)',
+                },
+                '100%': {
+                  transform: 'translate(0px, 0px) scale(1)',
+                },
+              },
+            },
+          },
+        },
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
