@@ -1,14 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { TravelPackage } from '../types';
 import { generateTravelPackages } from '../services/geminiService';
 import PackageCard from './PackageCard';
-import { SparklesIcon } from './Icons';
+import { SparklesIcon, PaperAirplaneIcon, GlobeIcon } from './Icons';
+
+const loadingMessages = [
+  "Consultando el mapa estelar...",
+  "Empacando tus sueños...",
+  "Buscando playas paradisíacas...",
+  "Ajustando el itinerario perfecto...",
+  "Conversando con guías locales...",
+];
+
+const LoadingAnimation = () => (
+  <div className="relative w-48 h-48 mx-auto flex items-center justify-center">
+    <GlobeIcon className="w-40 h-40 text-brand-purple/30" />
+    <div className="absolute animate-plane-fly">
+      <PaperAirplaneIcon className="w-10 h-10 text-brand-magenta transform -rotate-45" />
+    </div>
+  </div>
+);
+
 
 const TravelPlanner: React.FC = () => {
   const [prompt, setPrompt] = useState('');
   const [packages, setPackages] = useState<TravelPackage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [currentMessage, setCurrentMessage] = useState(loadingMessages[0]);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isLoading) {
+      interval = setInterval(() => {
+        setCurrentMessage(prevMessage => {
+          const currentIndex = loadingMessages.indexOf(prevMessage);
+          const nextIndex = (currentIndex + 1) % loadingMessages.length;
+          return loadingMessages[nextIndex];
+        });
+      }, 2000);
+    }
+    return () => clearInterval(interval);
+  }, [isLoading]);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,6 +51,7 @@ const TravelPlanner: React.FC = () => {
     setIsLoading(true);
     setError(null);
     setPackages([]);
+    setCurrentMessage(loadingMessages[0]);
 
     try {
       const results = await generateTravelPackages(prompt);
@@ -58,8 +93,8 @@ const TravelPlanner: React.FC = () => {
 
         {isLoading && (
           <div className="mt-12">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-brand-magenta mx-auto"></div>
-            <p className="mt-4 text-gray-700">Estamos planeando tu sueño, ¡un momento!</p>
+            <LoadingAnimation />
+            <p className="mt-4 text-gray-700 text-lg transition-opacity duration-500">{currentMessage}</p>
           </div>
         )}
 

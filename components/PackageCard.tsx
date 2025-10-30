@@ -8,10 +8,13 @@ interface PackageCardProps {
 }
 
 const PackageCard: React.FC<PackageCardProps> = ({ travelPackage, index }) => {
+  // Use a more relevant image source like Unsplash
+  const imageUrl = `https://source.unsplash.com/400x250/?${encodeURIComponent(travelPackage.destination.split(',')[0])},travel`;
+
   return (
     <div className="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl shadow-lg overflow-hidden flex flex-col transform hover:-translate-y-2 transition-transform duration-300">
       <img
-        src={`https://picsum.photos/400/250?random=${index + 10}`}
+        src={imageUrl}
         alt={travelPackage.destination}
         className="w-full h-48 object-cover"
       />

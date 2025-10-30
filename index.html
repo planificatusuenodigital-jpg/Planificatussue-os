@@ -26,6 +26,8 @@
             },
             animation: {
               blob: 'blob 10s infinite',
+              'button-breathe': 'breathe 4s ease-in-out infinite',
+              'plane-fly': 'fly 6s linear infinite',
             },
             keyframes: {
               blob: {
@@ -41,6 +43,14 @@
                 '100%': {
                   transform: 'translate(0px, 0px) scale(1)',
                 },
+              },
+              breathe: {
+                '0%, 100%': { transform: 'scale(1)', boxShadow: '0 4px 15px rgba(217, 0, 108, 0.2)' },
+                '50%': { transform: 'scale(1.05)', boxShadow: '0 10px 25px rgba(217, 0, 108, 0.4)' },
+              },
+              fly: {
+                '0%': { transform: 'rotate(0deg) translateX(60px) rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg) translateX(60px) rotate(-360deg)' },
               },
             },
           },
